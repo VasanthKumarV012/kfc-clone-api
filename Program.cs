@@ -28,7 +28,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy =>{policy.WithOrigins("https://kfc-clone-8qu95ku0s-vasanth-kumar-v-s-projects.vercel.app").AllowAnyHeader().AllowAnyMethod();});
+        policy =>{policy.WithOrigins("http://localhost:5173",
+            "https://kfc-clone-8qu95ku0s-vasanth-kumar-v-s-projects.vercel.app").AllowAnyHeader().AllowAnyMethod();});
 });
 
 var app = builder.Build();
