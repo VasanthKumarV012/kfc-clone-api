@@ -27,31 +27,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy =>
-        {
-            policy.AllowAnyOrigin()
-                  .AllowAnyMethod()
-                  .AllowAnyHeader();
-        });
-});
-
-builder.Services.AddCors(options =>
-{
     options.AddPolicy("AllowFrontend",
-        policy =>
-        {
-            policy.WithOrigins(
-                "https://kfc-clone-8qu95ku0s-vasanth-kumar-v-s-projects.vercel.app"
-            )
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-        });
+        policy =>{policy.WithOrigins("https://kfc-clone-8qu95ku0s-vasanth-kumar-v-s-projects.vercel.app").AllowAnyHeader().AllowAnyMethod();});
 });
-
 
 var app = builder.Build();
+
 app.UseCors("AllowFrontend");
+
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
@@ -60,8 +43,6 @@ app.UseCors("AllowFrontend");
 //}
 
 app.UseHttpsRedirection();
-
-app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
